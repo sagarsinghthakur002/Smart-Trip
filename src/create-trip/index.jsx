@@ -12,11 +12,17 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../service/firebaseConfig.jsx";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const CreateTrip = () => {
   const [place, setPlace] = useState();
+
   const [formData, setFormData] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+
+  const[loading,setLoading]=useState(false);
 
   // Update form data
   const handleInputChange = (name, value) => {
@@ -76,6 +82,8 @@ const CreateTrip = () => {
       return;
     }
 
+    setLoading(true);
+
     console.log("Form Data:", formData);
 
     const FINAL_PROMPT = AI_PROMPT
@@ -84,15 +92,42 @@ const CreateTrip = () => {
       .replace("{traveler}", formData?.traveler)
       .replace("{budget}", formData?.budget);
 
-    console.log("Final Prompt:", FINAL_PROMPT);
+    
 
-    try {
-      const result = await chatSession.sendMessage(FINAL_PROMPT);
-      console.log("AI Response:", result?.response?.text());
-    } catch (error) {
-      console.error("Error generating trip:", error);
-    }
-  };
+      try {
+        const result = await chatSession.sendMessage(FINAL_PROMPT);
+        const tripData = result?.response?.text(); // Ensure result is defined
+    
+        console.log("AI Response:", tripData);
+    
+        if (tripData) {
+          await SaveAiTrip(tripData);
+        } else {
+          throw new Error("AI response is empty.");
+        }
+      } catch (error) {
+        console.error("Error generating trip:", error);
+      } finally {
+        setLoading(false); // Ensure loading stops in all cases
+      }
+    };
+
+    const SaveAiTrip = async (tripData) => {
+      setLoading(true);
+    
+      const user = JSON.parse(localStorage.getItem("user"));
+      const docId = Date.now().toString(); // Fix typo (was `Data.now()`)
+    
+      await setDoc(doc(db, "AITrips", docId), {
+        userSelection: formData,
+        tripData: JSON.parse(tripData), // to save the trip data in JSON format in firestore
+        userEmail: user?.email,
+        id: docId,
+      });
+    
+      setLoading(false);
+    };
+    
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 px-10 mt-10">
@@ -144,9 +179,8 @@ const CreateTrip = () => {
               <div
                 key={index}
                 onClick={() => handleInputChange("budget", item.title)}
-                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${
-                  formData?.budget === item.title ? "shadow-lg border-blue-700" : ""
-                }`}
+                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${formData?.budget === item.title ? "shadow-lg border-blue-700" : ""
+                  }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
                 <h2 className="font-bold text-lg">{item.title}</h2>
@@ -164,9 +198,8 @@ const CreateTrip = () => {
               <div
                 key={index}
                 onClick={() => handleInputChange("traveler", item.people)}
-                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${
-                  formData?.traveler === item.people ? "shadow-lg border-blue-700" : ""
-                }`}
+                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${formData?.traveler === item.people ? "shadow-lg border-blue-700" : ""
+                  }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
                 <h2 className="font-bold text-lg">{item.title}</h2>
@@ -179,10 +212,11 @@ const CreateTrip = () => {
         {/* Generate Trip Button */}
         <div className="flex justify-end mt-10">
           <button
+          disabled={loading}
             onClick={OnGenerateTrip}
             className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400"
           >
-            Generate Trip
+            {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip"}
           </button>
         </div>
 
