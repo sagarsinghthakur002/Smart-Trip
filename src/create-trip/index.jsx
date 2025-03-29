@@ -15,6 +15,7 @@ import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig.jsx";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const CreateTrip = () => {
   const [place, setPlace] = useState();
@@ -23,6 +24,8 @@ const CreateTrip = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const[loading,setLoading]=useState(false);
+
+  const navigate=useNavigate();
 
   // Update form data
   const handleInputChange = (name, value) => {
@@ -116,17 +119,28 @@ const CreateTrip = () => {
       setLoading(true);
     
       const user = JSON.parse(localStorage.getItem("user"));
-      const docId = Date.now().toString(); // Fix typo (was `Data.now()`)
+      const docId = Date.now().toString();
+    
+      let parsedTripData;
+    
+      try {
+        parsedTripData = typeof tripData === "string" ? JSON.parse(tripData) : tripData;
+      } catch (error) {
+        console.error("Error parsing tripData:", error, tripData);
+        parsedTripData = {}; // Fallback to an empty object
+      }
     
       await setDoc(doc(db, "AITrips", docId), {
         userSelection: formData,
-        tripData: JSON.parse(tripData), // to save the trip data in JSON format in firestore
+        tripData: parsedTripData, // Safe JSON parsing
         userEmail: user?.email,
         id: docId,
       });
     
       setLoading(false);
+      navigate(`/View-trip/` + docId);
     };
+    
     
 
   return (
