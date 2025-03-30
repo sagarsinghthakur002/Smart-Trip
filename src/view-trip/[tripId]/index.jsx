@@ -3,6 +3,9 @@ import { toast } from 'sonner';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../service/firebaseConfig.jsx';
+import InfoSection from '../components/infoSection.jsx';
+import Hotels from "../components/Hotels.jsx";
+
 
 
 
@@ -11,7 +14,7 @@ function Viewtrip() {
      const {tripId} = useParams();
      const [trip, setTrip] = useState({});
 
-     useEffect(() => {
+     useEffect(() => { //Only fetch trip data when the tripId changes
       trip&&GetTripData();
       }, [tripId]);
     
@@ -31,8 +34,11 @@ function Viewtrip() {
 
      }
   return (
-    <div>
-      viewtrip: {tripId}
+    <div className="p-10 md:px-20 lg:px-44 xl:px-56">
+      <InfoSection trip={trip} />
+
+      <Hotels trip={trip} />
+      
     </div>
   )
 }
