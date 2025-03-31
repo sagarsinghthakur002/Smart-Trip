@@ -5,13 +5,17 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../service/firebaseConfig.jsx';
 import InfoSection from '../components/infoSection.jsx';
 import Hotels from "../components/Hotels.jsx";
+import PlaceToVisit from "../components/PlaceToVisit.jsx";
+import Footer from "../components/Footer.jsx";
+
+
 
 
 
 
 function Viewtrip() {
 
-     const {tripId} = useParams();
+     const {tripId} = useParams();//Get the tripId from the URL
      const [trip, setTrip] = useState({});
 
      useEffect(() => { //Only fetch trip data when the tripId changes
@@ -35,9 +39,16 @@ function Viewtrip() {
      }
   return (
     <div className="p-10 md:px-20 lg:px-44 xl:px-56">
+
       <InfoSection trip={trip} />
 
       <Hotels trip={trip} />
+
+      <PlaceToVisit trip={trip} />
+
+      <Footer trip={trip} />
+
+      
       
     </div>
   )
