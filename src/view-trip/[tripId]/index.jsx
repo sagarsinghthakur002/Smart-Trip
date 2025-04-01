@@ -12,7 +12,6 @@ import Footer from "../components/Footer.jsx";
 
 
 
-
 function Viewtrip() {
 
      const {tripId} = useParams();//Get the tripId from the URL

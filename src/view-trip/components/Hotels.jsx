@@ -9,7 +9,7 @@ function Hotels({ trip }) {
     <div className='cursor-pointer'>
       <h2 className="font-bold text-xl mt-5">Hotel Recommendations</h2>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 l gap-5 mt-5'>
         {hotels.length > 0 ? (
           hotels.map((hotel) => (
             <Link 
@@ -25,7 +25,7 @@ function Hotels({ trip }) {
                   alt={hotel?.hotelName || "Hotel Image"} 
                   className='rounded-t-xl h-40 w-full object-cover'
                 />
-                <div className='p-3 flex flex-col gap-1'>
+                <div className='p-3 flex flex-col gap-1 h-[10em]'>
                   <h2 className='font-semibold text-lg'>{hotel?.hotelName ?? "Unknown Hotel"}</h2>
                   <p className='text-sm text-gray-500'>📍{hotel?.hotelAddress ?? "No address available"}</p>
                   <p className='text-sm text-gray-700'>💳{hotel?.priceRange ?? "Price not available"}</p>

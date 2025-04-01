@@ -124,15 +124,21 @@ const CreateTrip = () => {
       let parsedTripData;
     
       try {
+        console.log("Raw tripData before parsing:", tripData);
+    
         parsedTripData = typeof tripData === "string" ? JSON.parse(tripData) : tripData;
-      } catch (error) {
-        console.error("Error parsing tripData:", error, tripData);
-        parsedTripData = {}; // Fallback to an empty object
+    
+        console.log("Parsed tripData successfully:", parsedTripData);
+    } catch (error) {
+        console.error("Error parsing tripData:", error.message);
+        console.error("Problematic tripData:", tripData);
+        
+        parsedTripData = {};
       }
     
       await setDoc(doc(db, "AITrips", docId), {
         userSelection: formData,
-        tripData: parsedTripData, // Safe JSON parsing
+        tripData: parsedTripData, 
         userEmail: user?.email,
         id: docId,
       });
