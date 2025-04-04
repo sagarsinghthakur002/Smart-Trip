@@ -48,39 +48,39 @@ const Header = () => {
 
       console.log("User Info:", response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      setUser(response.data); // Important: Update state!
-      setOpenDialog(false);
-      // OnGenerateTrip(); ← remove or define if necessary
+      setUser(response.data);
+      setOpenDialog(false)
     } catch (error) {
       console.error("Error fetching user profile:", error);
     }
   };
 
   return (
-    <div className="flex justify-between items-center p-4 px-5">
+    <div className="flex justify-between items-center p-4 px-5 cursor-auto bg-black">
       {/* Logo */}
-      <img className="w-44" src={logo} alt="Planner Logo" />
+      <a href="/"><img className="w-44" src={logo} alt="Planner Logo" /></a>
 
       <div>
         {user ? (
           <div className="flex items-center gap-2">
             <a href="/create-trip">
-            <button className="border border-gray-300 rounded-full px-3 py-1">
-              + Create Trip
-            </button>
+              <button className="border border-gray-300 rounded-full px-5 py-2 text-white-200">
+                + Create Trip
+              </button>
             </a>
 
             <a href="/my-trips">
-            <button className="border border-gray-300 rounded-full px-3 py-1">
-              My Trip
-            </button>
+              <button className="border border-gray-300  rounded-full px-4 py-2">
+                My Trip
+              </button>
             </a>
             <Popover>
               <PopoverTrigger>
                 <img
-                  src={user?.picture || "https://via.placeholder.com/35"}
-                  className="h-[35px] w-[35px] rounded-full"
+                  src={user?.picture}
+                  className="h-[35px] w-[35px] rounded-full  border object-cover bg-black"
                   alt="User Profile"
+                  referrerPolicy="no-referrer"
                 />
               </PopoverTrigger>
 
@@ -89,7 +89,7 @@ const Header = () => {
                   <p className="font-semibold">{user.name}</p>
                   <p className="text-sm text-gray-500">{user.email}</p>
                   <h2
-                    className="font-bold cursor-pointer"
+                    className="font-bold cursor-pointer text-blue-700"
                     onClick={() => {
                       googleLogout();
                       localStorage.clear();
@@ -107,24 +107,26 @@ const Header = () => {
         )}
       </div>
 
-      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Sign In Required</DialogTitle>
-            <div>
-              <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
-              <p>Sign in securely with Google authentication.</p>
-              <button
-                onClick={login}
-                className="w-full mt-5 flex items-center justify-center py-2 border rounded-lg gap-5"
-              >
-                <FcGoogle className="w-6 h-6" />
-                Sign In With Google
-              </button>
-            </div>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+        
+      <Dialog open={openDialog} onOpenChange={setOpenDialog} >
+  <DialogContent className="bg-gray-900"> {/* Added bg-gray-400 */}
+    <DialogHeader>
+      <DialogTitle>Sign In Required</DialogTitle>
+      <div className=" p-5 rounded-lg">
+        <h2 className="font-bold text-lg mt-7 text-white">Sign In With Google</h2>
+        <p className="text-gray-300">Sign in securely with Google authentication.</p>
+        <button
+          onClick={login}
+          className="w-full mt-5 flex items-center justify-center py-2 border border-white rounded-lg gap-5 text-white"
+        >
+          <FcGoogle className="w-6 h-6" />
+          Sign In With Google
+        </button>
+      </div>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
     </div>
   );
 };

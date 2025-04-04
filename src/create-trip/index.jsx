@@ -178,7 +178,7 @@ const CreateTrip = () => {
         </div>
 
         {/* Trip Duration */}
-        <div>
+        <div className="hover:shadow-lg p-4 rounded-md border">
           <h2 className="text-xl my-3 font-medium">How many days are you planning for your trip?</h2>
           <input
             type="number"
@@ -199,7 +199,7 @@ const CreateTrip = () => {
               <div
                 key={index}
                 onClick={() => handleInputChange("budget", item.title)}
-                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${formData?.budget === item.title ? "shadow-lg border-blue-700" : ""
+                className={` p-4  hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer shadow-md border rounded-xl overflow-hidden ${formData?.budget === item.title ? "shadow-lg border-blue-700" : ""
                   }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -218,7 +218,7 @@ const CreateTrip = () => {
               <div
                 key={index}
                 onClick={() => handleInputChange("traveler", item.people)}
-                className={`border p-4 rounded-md shadow-md cursor-pointer hover:shadow-lg ${formData?.traveler === item.people ? "shadow-lg border-blue-700" : ""
+                className={` p-4  hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer shadow-md border rounded-xl overflow-hidden ${formData?.traveler === item.people ? "shadow-lg border-blue-700" : ""
                   }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
