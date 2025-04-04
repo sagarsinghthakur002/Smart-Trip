@@ -19,7 +19,7 @@ function Hotels({ trip }) {
               rel="noopener noreferrer"
               className="block hover:scale-105 transition-transform duration-300 ease-in-out"
             > 
-              <div className='border rounded-xl shadow-md overflow-hidden bg-white'> // Ensure the hotel card has a white background
+              <div className='border rounded-xl shadow-md overflow-hidden bg-white'> 
                 <img 
                   src={Imge} 
                   alt={hotel?.hotelName || "Hotel Image"} 

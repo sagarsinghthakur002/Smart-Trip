@@ -5,19 +5,19 @@ import { FaShare } from "react-icons/fa";
 
 function InfoSection({ trip }) {
 
-  useEffect(()=>{
-    trip&&GetPlacePhoto();
-  }
-  ,[trip])
+  // useEffect(()=>{
+  //   trip&&GetPlacePhoto();
+  // }
+  // ,[trip])
 
-  const GetPlacePhoto=async()=>{
-    const data={
-      textQuery:trip?.userSelection?.location?.label
-    }
-    const result=await GetPlaceDetails(data).then(resp=>{
-      console.log(resp.data.places[0].photos[3].name)
-    })
-  }
+  // const GetPlacePhoto=async()=>{
+  //   const data={
+  //     textQuery:trip?.userSelection?.location?.label
+  //   }
+  //   const result=await GetPlaceDetails(data).then(resp=>{
+  //     console.log(resp.data.places[0].photos[3].name)
+  //   })
+  // }
   
   return (
     <div>
