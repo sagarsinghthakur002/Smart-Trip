@@ -3,7 +3,7 @@ import Imge from '../../assets/images/image.png';
 import { Link } from 'react-router-dom';
 
 function Hotels({ trip }) {
-  const hotels = trip?.tripData?.hotels || []; // Ensures hotels is always an array
+  const hotels = trip?.tripData?.hotels || []; 
 
   return (
     <div className='cursor-pointer'>

@@ -14,15 +14,15 @@ import Footer from "../components/Footer.jsx";
 
 function Viewtrip() {
 
-     const {tripId} = useParams();//Get the tripId from the URL
+     const {tripId} = useParams();                      //Get the tripId from the URL
      const [trip, setTrip] = useState({});
 
-     useEffect(() => { //Only fetch trip data when the tripId changes
+     useEffect(() => {                                  //Only fetch trip data when the tripId changes
       trip&&GetTripData();
       }, [tripId]);
     
-    //   used to get Trip data from firebase
-    const GetTripData=async() =>{
+                                                      
+    const GetTripData=async() =>{                     //Function to fetch trip data from Firestore
       const docRef = doc(db, "AITrips", tripId);
       const docSnap = await getDoc(docRef);
       
@@ -36,6 +36,8 @@ function Viewtrip() {
       }
 
      }
+
+     
   return (
     <div className="p-10 md:px-20 lg:px-44 xl:px-56 cursor-auto">
 

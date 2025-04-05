@@ -18,14 +18,15 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const CreateTrip = () => {
-  const [place, setPlace] = useState();
+  const [place, setPlace] = useState();                                 // State to store selected place
 
-  const [formData, setFormData] = useState({});
-  const [openDialog, setOpenDialog] = useState(false);
+  const [formData, setFormData] = useState({});                        // State to store form data
 
+  const [openDialog, setOpenDialog] = useState(false); 
+  
   const[loading,setLoading]=useState(false);
 
-  const navigate=useNavigate();
+  const navigate=useNavigate();                                       // Hook to navigate to different routes
 
   // Update form data
   const handleInputChange = (name, value) => {
@@ -34,24 +35,24 @@ const CreateTrip = () => {
       return;
     }
 
-    setFormData((prevData) => ({
+    setFormData((prevData) => ({                                     // Update form data state
       ...prevData,
       [name]: value,
     }));
   };
 
-  useEffect(() => {
+  useEffect(() => {                                                   // Log form data changes
     console.log(formData);
   }, [formData]);
 
-  const login = useGoogleLogin({
+  const login = useGoogleLogin({                                      // Function to handle Google login
     onSuccess: (tokenResponse) => {
       GetUserProfile(tokenResponse);
     },
     onError: (error) => console.error("Login Failed:", error),
   });
 
-  const GetUserProfile = async (tokenInfo) => {
+  const GetUserProfile = async (tokenInfo) => {                       // Function to fetch user profile from Google API
     try {
       const response = await axios.get(
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
@@ -63,8 +64,8 @@ const CreateTrip = () => {
         }
       );
 
-      console.log("User Info:", response.data);
-      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log("User Info:", response.data);                         // Log user info
+      localStorage.setItem("user", JSON.stringify(response.data));      // Store user info in localStorage
       setOpenDialog(false);
       OnGenerateTrip();
     } catch (error) {
@@ -72,15 +73,15 @@ const CreateTrip = () => {
     }
   };
 
-  const OnGenerateTrip = async () => {
+  const OnGenerateTrip = async () => {                                    // Function to generate trip itinerary
     const user = localStorage.getItem("user");
 
-    if (!user) {
+    if (!user) {// Check if user is logged in
       setOpenDialog(true);
       return;
     }
 
-    if (!formData?.location || !formData?.budget || !formData?.traveler || !formData?.noOfDays) {
+    if (!formData?.location || !formData?.budget || !formData?.traveler || !formData?.noOfDays) {     // Check if all form fields are filleds
       toast("Please fill all details.");
       return;
     }
@@ -89,7 +90,7 @@ const CreateTrip = () => {
 
     console.log("Form Data:", formData);
 
-    const FINAL_PROMPT = AI_PROMPT
+    const FINAL_PROMPT = AI_PROMPT                                  // Prompt for AI model
       .replace("{location}", formData?.location)
       .replace("{totalDays}", formData?.noOfDays)
       .replace("{traveler}", formData?.traveler)
@@ -99,7 +100,7 @@ const CreateTrip = () => {
 
       try {
         const result = await chatSession.sendMessage(FINAL_PROMPT);
-        const tripData = result?.response?.text(); // Ensure result is defined
+        const tripData = result?.response?.text();                          // Ensure result is defined
     
         console.log("AI Response:", tripData);
     
@@ -111,20 +112,20 @@ const CreateTrip = () => {
       } catch (error) {
         console.error("Error generating trip:", error);
       } finally {
-        setLoading(false); // Ensure loading stops in all cases
+        setLoading(false);                                               
       }
     };
 
-    const SaveAiTrip = async (tripData) => {
+    const SaveAiTrip = async (tripData) => {                            // Function to save generated trip data to Firestore
       setLoading(true);
     
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(localStorage.getItem("user"));                 // Get user data from localStorage
       const docId = Date.now().toString();
     
       let parsedTripData;
     
       try {
-        console.log("Raw tripData before parsing:", tripData);
+        console.log("Raw tripData before parsing:", tripData); 
     
         parsedTripData = typeof tripData === "string" ? JSON.parse(tripData) : tripData;
     
@@ -136,7 +137,7 @@ const CreateTrip = () => {
         parsedTripData = {};
       }
     
-      await setDoc(doc(db, "AITrips", docId), {
+      await setDoc(doc(db, "AITrips", docId), {                                   // Save trip data to Firestore
         userSelection: formData,
         tripData: parsedTripData, 
         userEmail: user?.email,
@@ -144,7 +145,7 @@ const CreateTrip = () => {
       });
     
       setLoading(false);
-      navigate(`/View-trip/` + docId);
+      navigate(`/View-trip/` + docId);                                         // Navigate to the trip view page with the document ID
     };
     
     
@@ -191,6 +192,8 @@ const CreateTrip = () => {
           />
         </div>
 
+
+
         {/* Budget Selection */}
         <div>
           <h2 className="text-xl my-3 font-medium">What is your Budget?</h2>
@@ -209,6 +212,8 @@ const CreateTrip = () => {
             ))}
           </div>
         </div>
+
+
 
         {/* Travel Companion Selection */}
         <div>
@@ -229,16 +234,20 @@ const CreateTrip = () => {
           </div>
         </div>
 
+
+
         {/* Generate Trip Button */}
         <div className="flex justify-end mt-10">
           <button
           disabled={loading}
             onClick={OnGenerateTrip}
-            className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400"
+            className="bg-[#2945a1ad] text-white px-6 py-2 rounded-md hover:bg-[#8340cf] disabled:bg-gray-400"
           >
             {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip"}
           </button>
         </div>
+
+        
 
         {/* Sign-In Dialog */}
         <Dialog open={openDialog}>

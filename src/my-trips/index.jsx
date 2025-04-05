@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../service/firebaseConfig.jsx';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
@@ -9,28 +8,28 @@ function MyTrips() {
     const navigate = useNavigate();
     const [userTrips, setUserTrips] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {                                                  // Fetch user trips when the component mounts
         GetUserTrips();
     }, []);
 
-    const GetUserTrips = async () => {
+    const GetUserTrips = async () => {                               // Function to fetch user trips from Firestore
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
             navigate('/');
             return;
         }
 
-        setUserTrips([]);
+        setUserTrips([]);                                              // Clear previous trips before fetching new ones
 
-        const q = query(
+        const q = query(                                            // Create a query to fetch trips for the logged-in user
             collection(db, "AITrips"),
             where("userEmail", "==", user?.email)
         );
 
-        const querySnapshot = await getDocs(q);
+        const querySnapshot = await getDocs(q);                         // Fetch documents from the query
         querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
-            setUserTrips((prev) => [...prev, doc.data()]);
+            setUserTrips((prev) => [...prev, doc.data()]);              // Update state with fetched trips
         });
     };
 
@@ -44,7 +43,7 @@ function MyTrips() {
                         <UserTripCardItem key={index} trip={trip} />
                     ))
                 ) : (
-                    [1, 2, 3, 4, 5, 6].map((item, index) => (
+                    [1, 2, 3, 4, 5, 6].map((item, index) => ( 
                         <div key={index} className='hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer shadow-md border rounded-xl overflow-hidden bg-white h-40'>
                         </div>
                     ))
