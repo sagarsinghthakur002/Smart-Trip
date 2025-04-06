@@ -243,31 +243,32 @@ const CreateTrip = () => {
             onClick={OnGenerateTrip}
             className="bg-[#2945a1ad] text-white px-6 py-2 rounded-md hover:bg-[#8340cf] disabled:bg-gray-400"
           >
-            {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip"}
+            {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip ✨"}
           </button>
         </div>
-
         
 
         {/* Sign-In Dialog */}
-        <Dialog open={openDialog}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Sign In Required</DialogTitle>
-              <div>
-                <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
-                <p>Sign in securely with Google authentication.</p>
-                <button
-                  onClick={login}
-                  className="w-full mt-5 flex items-center justify-center py-2 border rounded-lg gap-5"
-                >
-                  <FcGoogle className="w-6 h-6" />
-                  Sign In With Google
-                </button>
-              </div>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+                <DialogContent className="bg-gray-900">
+                  <DialogHeader>
+                    <DialogTitle>Sign In Required</DialogTitle>
+                    <div className="p-5 rounded-lg">
+                      <h2 className="font-bold text-lg mt-7 text-white">Sign In With Google</h2>
+                      <p className="text-gray-300">Sign in securely with Google authentication.</p>
+        
+                      
+                      <button
+                        onClick={login}
+                        className="w-full mt-5 flex items-center justify-center py-2 border border-white rounded-lg gap-5 text-white hover:bg-gray-800"
+                      >
+                        <FcGoogle className="w-6 h-6" />
+                        Sign In With Google
+                      </button>
+                    </div>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
       </div>
     </div>
   );

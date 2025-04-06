@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <div className='my-7 text-center text-g'>
-      <h2>Created By Sagar Thkaur Smart AI trip App </h2>
+      <h2> Copyright &copy; Sagar Thakur. All Rights Reserved. </h2>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import laptop from '../../assets/images/laptop.png'
 import phone from '../../assets/images/phone.png'
-
+// import travel from '../../assets/images/travel.png'
 function Hero() {
   return (
     <div className="flex flex-col  items-center mx-10 sm:mx-56 gap-9 cursor-pointer">
@@ -18,11 +18,15 @@ function Hero() {
           Get started <span className="font-normal">─ it's free</span>
         </button>
       </Link>
-      <div className='flex gap-5'>
+      <div className='flex flex-col sm:flex-row gap-5 w-full justify-center'>
       <img src={laptop}/>
       <img src={phone} />
       </div>
+
+      {/* <img src={travel} className="w-full   rounded-lg" alt="trip" /> */}
+      
     </div>
+    
   )
 }
 
