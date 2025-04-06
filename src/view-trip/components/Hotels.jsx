@@ -19,17 +19,17 @@ function Hotels({ trip }) {
               rel="noopener noreferrer"
               className="block hover:scale-105 transition-transform duration-300 ease-in-out"
             > 
-              <div className='border rounded-xl shadow-md overflow-hidden bg-white'> 
+              <div className='border rounded-xl shadow-md overflow-hidden bg-slate-900'> 
                 <img 
                   src={Imge} 
                   alt={hotel?.hotelName || "Hotel Image"} 
-                  className='rounded-t-xl h-40 w-full object-cover'
+                  className='rounded-t-xl h-36 w-full object-cover'
                 />
                 <div className='p-3 flex flex-col gap-1 h-[10em]'>
                   <h2 className='font-semibold text-lg'>{hotel?.hotelName ?? "Unknown Hotel"}</h2>
-                  <p className='text-sm text-gray-500'>📍{hotel?.hotelAddress ?? "No address available"}</p>
-                  <p className='text-sm text-gray-700'>💳{hotel?.priceRange ?? "Price not available"}</p>
-                  <p className='text-sm text-gray-700'>⭐ {hotel?.rating ?? "Not rated"}</p>
+                  <p className='text-sm text-white'>📍{hotel?.hotelAddress ?? "No address available"}</p>
+                  <p className='text-sm text-white'>💳{hotel?.priceRange ?? "Price not available"}</p>
+                  <p className='text-sm text-white'>⭐ {hotel?.rating ?? "Not rated"}</p>
                 </div>
               </div> 
             </Link>                         
