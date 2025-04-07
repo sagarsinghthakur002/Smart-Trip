@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Imge from '../../assets/images/image.png'
+// import Imge from '../../assets/images/image.png'
 import { FaShare } from "react-icons/fa";
 // import { GetPlaceDetails } from '@/service/GlobalApi';
 import travel from '../../assets/images/travel.png'
@@ -21,7 +21,7 @@ function InfoSection({ trip }) {
   
   return (
     <div>
-      <img src={travel} className=' w-full h-[27rem]  rounded-bl-xl ' alt='trip' />
+      <img src={travel} className=' w-full md:h-[27rem]  rounded-bl-xl ' alt='trip' />
 
 
       <div className='flex justify-between items-center '>
