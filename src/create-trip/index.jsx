@@ -241,7 +241,7 @@ const CreateTrip = () => {
           <button
           disabled={loading}
             onClick={OnGenerateTrip}
-            className="bg-[#2945a1ad] text-white px-6 py-2 rounded-md hover:bg-[#8340cf] disabled:bg-gray-400"
+            className="bg-[#2945a1ad] text-white px-6 py-2 rounded-md hover:bg-[linear-gradient(90deg,#ff5ca0,#7959d1)] disabled:bg-gray-400"
           >
             {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip ✨"}
           </button>

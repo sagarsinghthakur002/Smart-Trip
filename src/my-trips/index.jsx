@@ -8,20 +8,20 @@ function MyTrips() {
     const navigate = useNavigate();
     const [userTrips, setUserTrips] = useState([]);
 
-    useEffect(() => {                                                  // Fetch user trips when the component mounts
+    useEffect(() => {                                                    // Fetch user trips when the component mounts
         GetUserTrips();
     }, []);
 
-    const GetUserTrips = async () => {                               // Function to fetch user trips from Firestore
-        const user = JSON.parse(localStorage.getItem("user"));
+    const GetUserTrips = async () => {                                   // Function to fetch user trips from Firestore
+        const user = JSON.parse(localStorage.getItem("user"));      
         if (!user) {
             navigate('/');
             return;
         }
 
-        setUserTrips([]);                                              // Clear previous trips before fetching new ones
+        setUserTrips([]);                                                // Clear previous trips before fetching new ones
 
-        const q = query(                                            // Create a query to fetch trips for the logged-in user
+        const q = query(                                                 // Create a query to fetch trips for the logged-in user
             collection(db, "AITrips"),
             where("userEmail", "==", user?.email)
         );

@@ -24,7 +24,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #8340cf;
+  color:linear-gradient 90deg,#ff5ca0,#7959d1;
 }
 
 body {
