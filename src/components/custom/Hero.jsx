@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import laptop from '../../assets/images/laptop.png'
 import phone from '../../assets/images/phone.png'
 // import travel from '../../assets/images/travel.png'
+
 function Hero() {
   return (
     <div className="flex flex-col  items-center mx-10 sm:mx-56 gap-9 cursor-pointer">

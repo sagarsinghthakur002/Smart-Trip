@@ -18,6 +18,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const CreateTrip = () => {
+
   const [place, setPlace] = useState();                                 // State to store selected place
 
   const [formData, setFormData] = useState({});                        // State to store form data
@@ -30,6 +31,7 @@ const CreateTrip = () => {
 
   // Update form data
   const handleInputChange = (name, value) => {
+    
     if (name === "noOfDays" && (value < 1 || value > 7)) {
       toast("Please enter a trip duration between 1 and 7 days.");
       return;
