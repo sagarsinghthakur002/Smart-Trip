@@ -8,9 +8,8 @@ import Hotels from "../components/Hotels.jsx";
 import PlaceToVisit from "../components/PlaceToVisit.jsx";
 import Footer from "../components/Footer.jsx";
 
-
-
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Viewtrip() {
 
@@ -20,6 +19,10 @@ function Viewtrip() {
      useEffect(() => {                                  //Only fetch trip data when the tripId changes
       trip&&GetTripData();
       }, [tripId]);
+
+     useEffect(() => {
+      AOS.init({ duration: 1000 });
+     }, []);
     
                                                       
     const GetTripData=async() =>{                     //Function to fetch trip data from Firestore
@@ -41,18 +44,24 @@ function Viewtrip() {
   return (
     <div className="p-10 md:px-20 lg:px-44 xl:px-56 cursor-auto">
 
-      <InfoSection trip={trip} />
+      <div data-aos="fade-up">
+        <InfoSection trip={trip} />
+      </div>
 
-      <Hotels trip={trip} />
+      <div data-aos="fade-up">
+        <Hotels trip={trip} />
+      </div>
 
-      <PlaceToVisit trip={trip} />
+      <div data-aos="fade-up">
+        <PlaceToVisit trip={trip} />
+      </div>
 
-      <Footer trip={trip} />
+      <div data-aos="fade-up">
+        <Footer trip={trip} />
+      </div>
 
-      
-      
     </div>
   )
 }
 
-export default Viewtrip
+export default Viewtrip;

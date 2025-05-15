@@ -16,6 +16,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../service/firebaseConfig.jsx";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import Footer from "@/view-trip/components/Footer.jsx";
 
 const CreateTrip = () => {
 
@@ -154,12 +155,12 @@ const CreateTrip = () => {
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 px-10 mt-10">
-      <h2 className="font-bold text-3xl">Tell us your preferences 🏖️🏝️</h2>
-      <p className="mt-3 text-gray-500 text-xl">
+      <h2 data-aos="fade-right" className="font-bold text-3xl ">Tell us your preferences 🏖️🏝️</h2>
+      <p fade-right className="mt-3 text-gray-500 text-xl">
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
       </p>
 
-      <div className="mt-20 flex flex-col gap-10">
+      <div data-aos="fade-right" className="mt-20 flex flex-col gap-10">
         {/* Google Place API */}
         <div>
           <h2 className="text-xl my-3 font-medium">What is your destination of choice?</h2>
@@ -181,7 +182,7 @@ const CreateTrip = () => {
         </div>
 
         {/* Trip Duration */}
-        <div className="hover:shadow-lg p-4 rounded-md border">
+        <div data-aos="fade-right" className="hover:shadow-lg p-4 rounded-md border">
           <h2 className="text-xl my-3 font-medium">How many days are you planning for your trip?</h2>
           <input
             type="number"
@@ -197,7 +198,7 @@ const CreateTrip = () => {
 
 
         {/* Budget Selection */}
-        <div>
+        <div data-aos="zoom-in">
           <h2 className="text-xl my-3 font-medium">What is your Budget?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {selectBudgetOptions.map((item, index) => (
@@ -218,7 +219,7 @@ const CreateTrip = () => {
 
 
         {/* Travel Companion Selection */}
-        <div>
+        <div data-aos="fade-up">
           <h2 className="text-xl my-3 font-medium">Who do you plan on traveling with?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {selectTravelsList.map((item, index) => (
@@ -239,7 +240,7 @@ const CreateTrip = () => {
 
 
         {/* Generate Trip Button */}
-        <div className="flex justify-end mt-10">
+        <div  className="flex justify-end mt-10 ">
           <button
           disabled={loading}
             onClick={OnGenerateTrip}
@@ -248,7 +249,16 @@ const CreateTrip = () => {
             {loading ? <AiOutlineLoading3Quarters className="animate-spin w-6 h-6" /> : "Generate Trip ✨"}
           </button>
         </div>
+
+
+
+        <div>
+              <Footer />
+        </div>
+
         
+
+
 
         {/* Sign-In Dialog */}
         <Dialog open={openDialog} onOpenChange={setOpenDialog}>
