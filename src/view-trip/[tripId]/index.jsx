@@ -25,7 +25,7 @@ function Viewtrip() {
      }, []);
     
                                                       
-    const GetTripData=async() =>{                     //Function to fetch trip data from Firestore
+    const GetTripData=async() =>{                       //Function to fetch trip data from Firestore
       const docRef = doc(db, "AITrips", tripId);
       const docSnap = await getDoc(docRef);
       

@@ -161,10 +161,13 @@ const CreateTrip = () => {
       </p>
 
       <div data-aos="fade-right" className="mt-20 flex flex-col gap-10">
-        {/* Google Place API */}
-        <div>
+
+
+
+        {/* Google Place API */}     
+        <div>                                                 
           <h2 className="text-xl my-3 font-medium">What is your destination of choice?</h2>
-          <GooglePlacesAutocomplete
+          <GooglePlacesAutocomplete                                               //from react-ggogle-place-autocomplete
             apiKey={import.meta.env.VITE_GOOGLE_PLACE_API_KEY}
             selectProps={{
               place,
@@ -180,6 +183,8 @@ const CreateTrip = () => {
             }}
           />
         </div>
+
+
 
         {/* Trip Duration */}
         <div data-aos="fade-right" className="hover:shadow-lg p-4 rounded-md border">
