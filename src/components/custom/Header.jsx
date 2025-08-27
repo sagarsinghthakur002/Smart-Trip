@@ -79,11 +79,11 @@ const Header = () => {
 
   return (
     // Header container
-    <div className="flex justify-between items-center p-4 px-5 cursor-auto bg-black" data-aos="fade-down">
+    <div className="flex justify-between items-center p-4 xl:px-20 cursor-auto bg-black" data-aos="fade-down">
       
       {/* Left: Logo with animation */}
       <a href="/" data-aos="fade-right">
-        <img className="w-24 sm:w-44" src={logo} alt="Planner Logo" />
+        <img className="w-20 sm:w-36 py-2" src={logo} alt="Planner Logo" />
       </a>
 
       {/* Right: Conditional rendering based on user login */}
