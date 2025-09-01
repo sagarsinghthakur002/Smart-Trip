@@ -156,7 +156,7 @@ const CreateTrip = () => {
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 px-10 mt-10">
       <h2 data-aos="fade-right" className="font-bold text-3xl ">Tell us your preferences 🏖️🏝️</h2>
-      <p fade-right className="mt-3 text-gray-500 text-xl">
+      <p data-aos="fade-right" className="mt-3 text-gray-500 text-xl">
         Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
       </p>
 
@@ -237,6 +237,7 @@ const CreateTrip = () => {
                 <h2 className="text-4xl">{item.icon}</h2>
                 <h2 className="font-bold text-lg">{item.title}</h2>
                 <p className="text-gray-600">{item.desc}</p>
+                <p className="text-gray-600">{item.people}</p>
               </div>
             ))}
           </div>

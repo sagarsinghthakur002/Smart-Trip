@@ -12,7 +12,7 @@ function PlaceCardItem({ place }) {
     >
       <div className="rounded-xl p-3 mt-2 border flex gap-5 hover:scale-105 transition-transform duration-300 ease-in-out">
         <img
-          src={Imge} // Use place.imageUrl if available
+          src={Imge} 
           className="w-[130px] h-[130px] rounded"
           alt={place.placeName}
         />

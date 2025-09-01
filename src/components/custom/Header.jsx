@@ -79,7 +79,11 @@ const Header = () => {
 
   return (
     // Header container
-    <div className="flex justify-between items-center p-4 xl:px-20 cursor-auto bg-black" data-aos="fade-down">
+    <div 
+      className="flex justify-between items-center p-3 xl:px-36 cursor-auto bg-transparent backdrop-blur-sm border-b border-white/10" 
+      data-aos="fade-down"
+      style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50 }}
+    >
       
       {/* Left: Logo with animation */}
       <a href="/" data-aos="fade-right">
@@ -90,16 +94,16 @@ const Header = () => {
       <div data-aos="zoom-in">
         {user ? (
           // If user is logged in, show buttons and profile picture
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-x-5">
 
             {/* Link to create a new trip */}
             <a href="/create-trip">
-              <button className="border border-gray-300 rounded-full px-2 py-2 text-white-200">+ Create Trip</button>
+              <button className="border border-gray-300 rounded-full xl:px-2 xl:py-2 text-white-200 text-[11px] xl:text-[15px] ">+ Create Trip</button>
             </a>
 
             {/* Link to view user's trips */}
             <a href="/my-trips">
-              <button className="border border-gray-300 rounded-full px-4 py-2">My Trip</button>
+              <button className="border border-gray-300 rounded-full xl:px-4 xl:py-2 text-[12px] xl:text-[15px]">My Trip</button>
             </a>
 
 

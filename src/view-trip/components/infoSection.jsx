@@ -5,6 +5,7 @@ import { FaShare } from "react-icons/fa";
 import travel from '../../assets/images/travel.png'
 function InfoSection({ trip }) {
 
+
   // useEffect(()=>{
   //   trip&&GetPlacePhoto();
   // }
@@ -18,6 +19,7 @@ function InfoSection({ trip }) {
   //     console.log(resp.data.places[0].photos[3].name)
   //   })
   // }
+  
   
   return (
     <div>

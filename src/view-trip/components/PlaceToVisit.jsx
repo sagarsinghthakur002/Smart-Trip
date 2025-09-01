@@ -7,6 +7,8 @@ function PlaceToVisit({ trip }) {
       <h2 className="font-bold text-xl mt-5">Places to Visit</h2>
 
       <div className="grid grid-cols-1 gap-5 mt-5">
+
+        {/* Check if itinerary exists*/}
         {trip?.tripData?.itinerary &&
           Object.keys(trip.tripData.itinerary).map((dayKey, index) => {
             const item = trip.tripData.itinerary[dayKey];
