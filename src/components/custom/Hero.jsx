@@ -76,7 +76,7 @@ function Hero() {
         }}
       >
         <h1
-          className="font-extrabold sm:text-[50px] text-[25px] text-center leading-tight"
+          className="font-extrabold sm:text-[50px] text-[25px] text-center leading-tight pt-16"
           data-aos="fade-down"
         >
           <span
@@ -84,14 +84,14 @@ function Hero() {
             data-aos="zoom-in"
             data-aos-delay="200"
           >
-            Plan Less, Explore More:
+            Plan Less, Explore More : 
           </span>
           <span 
             data-aos="fade-up" 
             data-aos-delay="300" 
-            className="text-slate-400"
+            className="text-slate-400 ml-2"
           > 
-            AI Makes Travel Effortless!
+             AI Makes Travel Effortless!
           </span>
         </h1>
 
@@ -131,10 +131,10 @@ function Hero() {
         </div> */}
 
         <div className="mt-16">
-          <p className="font-bold text-xl text-slate-300 text-center mb-1">
+          <p data-aos="zoom-in" className="font-bold text-xl text-slate-300 text-center mb-1">
             POWERED BY
           </p>
-          <div className="flex items-center justify-center mb-5">
+          <div data-aos="zoom-in" className="flex items-center justify-center mb-5">
             <img
               src="/gemini.png"
               alt="Powered by Gemini AI"
