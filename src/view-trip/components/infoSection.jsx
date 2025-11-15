@@ -22,7 +22,7 @@ function InfoSection({ trip }) {
   
   
   return (
-    <div>
+    <div className='py-14 xl:py:0'>
       <img src={travel} className=' w-full md:h-[27rem]  rounded-bl-xl ' alt='trip' />
 
 

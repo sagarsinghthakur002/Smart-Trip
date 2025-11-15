@@ -22,8 +22,11 @@ function Viewtrip() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document:", docSnap.data());
-      setTrip(docSnap.data());
+      const tripData = docSnap.data();
+      console.log("Document:", tripData);
+      console.log("Hotels:", tripData?.tripData?.hotels);
+      console.log("Itinerary:", tripData?.tripData?.itinerary);
+      setTrip(tripData);
     } else {
       console.log("No such document!");
       toast("Trip not found.");
