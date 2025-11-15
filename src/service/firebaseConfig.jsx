@@ -1,14 +1,10 @@
-// Import the functions you need from the SDKs you need
+// Import Firebase core
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
-// import { getAnalytics } from "firebase/analytics";
+// Import Firebase Auth
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-import { getFirestore } from "firebase/firestore"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBaoT1tmT2MbR83lfF0hJWWnk_hrIL7G2g",
   authDomain: "smart-trip-ai-ba940.firebaseapp.com",
@@ -21,6 +17,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const db=getFirestore(app);
 
-// const analytics = getAnalytics(app);
+// Firestore
+export const db = getFirestore(app);
+
+// Auth
+export const auth = getAuth(app);
+
+// Google Provider
+export const googleProvider = new GoogleAuthProvider();
