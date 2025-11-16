@@ -537,15 +537,35 @@ const CreateTrip = () => {
         <div>
           <h2 className="text-xl my-3 font-medium">What is your destination of choice?</h2>
           {/* Country */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Select Country</label>
-            <select value={selectedCountry} onChange={(e) => handleCountryChange(e.target.value)} className="border p-2 rounded-md w-full">
-              <option value="">-- Select Country --</option>
-              {countries.map((country, index) => (
-                <option key={index} value={country}>{country}</option>
-              ))}
-            </select>
-          </div>
+          <div className="mb-4 w-full">
+  <label className="block text-sm font-medium mb-2 text-gray-200">
+    Select Country
+  </label>
+
+  <select
+    value={selectedCountry}
+    onChange={(e) => handleCountryChange(e.target.value)}
+    className="
+      border border-gray-300 dark:border-gray-700 
+      p-3 rounded-lg w-full 
+      text-sm sm:text-base 
+      bg-white dark:bg-gray-900 
+      text-gray-900 dark:text-gray-100
+      focus:outline-none 
+      focus:ring-2 focus:ring-blue-500 
+      transition
+    "
+  >
+    <option value="">-- Select Country --</option>
+
+    {countries.map((country, index) => (
+      <option key={index} value={country}>
+        {country}
+      </option>
+    ))}
+  </select>
+</div>
+
 
           {/* City */}
           {selectedCountry && cities[selectedCountry] && (
