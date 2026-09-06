@@ -4,7 +4,7 @@ import laptop from '../../assets/images/laptop.png';
 import phone from '../../assets/images/phone.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Hyperspeed from "../custom/Hyperspeed";
+// import Hyperspeed from "../custom/Hyperspeed";
 
 function Hero() {
   useEffect(() => {
@@ -19,7 +19,7 @@ function Hero() {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden' }}>
       {/* Background Hyperspeed Effect */}
-      <Hyperspeed
+      {/* <Hyperspeed
         effectOptions={{
           onSpeedUp: () => {},
           onSlowDown: () => {},
@@ -56,8 +56,8 @@ function Hero() {
             rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
             sticks: 0x03B3C3,
           }
-        }}
-      />
+        }} */}
+      {/* /> */}
 
       {/* Content Overlay */}
       <div 
